@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainMenuController">
+   <children>
+      <Line endX="349.0" layoutX="397.0" layoutY="84.0" startX="-344.0" />
+      <Label layoutX="33.0" layoutY="25.0" prefHeight="44.0" prefWidth="241.0" text="Goals for the Day">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateLabel" alignment="CENTER" layoutX="608.0" layoutY="25.0" prefHeight="44.0" prefWidth="168.0" text="Date">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="50.0" layoutY="121.0" prefHeight="500.0" prefWidth="700.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.0" minWidth="10.0" prefWidth="155.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="629.0" minWidth="10.0" prefWidth="545.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="234.0" minHeight="10.0" prefHeight="229.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="234.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="279.0" minHeight="10.0" prefHeight="247.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="95.0" prefWidth="165.0" text="Goals due Today:" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="todaysGoalsLabel" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></TextArea>
+            <Label alignment="CENTER" text="Upcoming Goals:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="upcomingGoalsLabel" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></TextArea>
+         </children>
+      </GridPane>
+      <GridPane layoutX="62.0" layoutY="662.0" prefHeight="95.0" prefWidth="700.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="122.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="119.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="allGoalsButton" mnemonicParsing="false" onAction="#loadGoals" prefHeight="110.0" prefWidth="147.0" style="-fx-background-radius: 20;" text="Goal Viewer/Editor" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButton" prefHeight="110.0" prefWidth="147.0" style="-fx-background-radius: 20;" text="Logout" GridPane.columnIndex="4" />
+            <Button fx:id="addGoalButton" mnemonicParsing="false" onAction="#addGoalButton" prefHeight="110.0" prefWidth="147.0" style="-fx-background-radius: 20;" text="Add Goal" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
