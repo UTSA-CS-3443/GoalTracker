@@ -1,16 +1,20 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import application.Main;
 import application.model.Date;
 import application.model.Goal;
 import application.model.User;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,10 +30,10 @@ import javafx.scene.control.TextArea;
  *
  */
 
-public class MainMenuController implements EventHandler<Event>{
+public class MainMenuController implements EventHandler<ActionEvent>, Initializable
+{
 	
-	@FXML
-	Button logoutButton, allGoalsButton, addGoalButton;
+	
 	
 	@FXML
 	Label  dateLabel;
@@ -37,7 +41,15 @@ public class MainMenuController implements EventHandler<Event>{
 	@FXML
 	TextArea todaysGoalsLabel, upcomingGoalsLabel;
 	
-	
+	public void completedGoals(ActionEvent event) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("../view/CompletedGoals.fxml"));
+			Main.stage.setScene(new Scene(root, 800, 800));
+			Main.stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/*
 	 * Creates a user and sets label text from the information read off of "data/goals.txt"
 	 */
@@ -103,54 +115,42 @@ public class MainMenuController implements EventHandler<Event>{
 	 * Switches scenes to GoalViewer.fxml
 	 */
 	@FXML
-	void loadGoals(Event event) {
+	void loadGoals(ActionEvent event) {
 		try {
-
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/GoalViewer.fxml"));
-			Parent root = (Parent)fxmlLoader.load();
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
-            
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+			Parent root = FXMLLoader.load(getClass().getResource("../view/GoalViewer.fxml"));
+			Main.stage.setScene(new Scene(root, 800, 800));
+			Main.stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
 	 * Switches scene to AddGoals.fxml
 	 */
 	@FXML
-	void addGoalButton(Event event) {
+	void addGoalButton(ActionEvent event) {
 		try {
-
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/AddGoals.fxml"));
-			Parent root = (Parent)fxmlLoader.load();
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
-            
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+			Parent root = FXMLLoader.load(getClass().getResource("../view/AddGoals.fxml"));
+			Main.stage.setScene(new Scene(root, 800, 800));
+			Main.stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
 	 * Switches scene to StartScreen.fxml
 	 */
 	@FXML
-	void logoutButton(Event event) {
+	void logoutButton(ActionEvent event) {
 		try {
-
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/StartScreen.fxml"));
-			Parent root = (Parent)fxmlLoader.load();
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
-            
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+			Parent root = FXMLLoader.load(getClass().getResource("../view/StartScreen.fxml"));
+			Main.stage.setScene(new Scene(root, 800, 800));
+			Main.stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	void dateThread() {
@@ -164,18 +164,25 @@ public class MainMenuController implements EventHandler<Event>{
 	/*
 	 * Initializes some of the labels upon loading scene
 	 */
-	@FXML
-	void initialize() {
+	
+	public void initialize(URL location, ResourceBundle resources) {
 		dateThread();
 		todayGoals();
 		upcomingGoalsLabel();
 	}
 	
 	@Override
-	public void handle(Event arg0) {
+	public void handle(ActionEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	
+
+
+	
+	
 	
 	
 }

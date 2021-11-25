@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 /**
  * User hold a list of goals read from goals.txt
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class User {
 	ArrayList<Goal> goals = new ArrayList<Goal>();
 	ArrayList<String> lines = new ArrayList<String>();
+	public static String compGoals ="";
 	
 	/*
 	 * Empty parameter construction
@@ -31,6 +34,7 @@ public class User {
 	 */
 	public void addGoals(Goal goal) {
 		goals.add(goal);
+		
 	}
 	
 	/*
@@ -64,6 +68,7 @@ public class User {
 		return temp;
 	}
 	
+	
 	/*
 	 * Removes the selected goal from the array
 	 */
@@ -87,6 +92,86 @@ public class User {
 		      e.printStackTrace();
 		    }
 		  
+	}
+	public void addCompGoal(String goals) {
+		if(compGoals.equals("")) {
+			compGoals += getCompGoals("data/completedgoals.txt");
+			compGoals+= goals + "\n";
+		}
+		else {
+		compGoals += goals + "\n";
+		
+		}
+		
+		}
+		
+	public String completedGoalsfile(String file) {
+		String ret ="";
+		if(compGoals.equals("")) {
+			compGoals += getCompGoals(file);
+		}
+		else {
+			ret = compGoals;
+		}
+		return ret;
+	}
+	public void addFileCompGoals(String file) {
+		try {
+			 File goalFile = new File(file);
+		      if (goalFile.createNewFile()) {
+		        compwriter(file);
+		      } else {
+		        compwriter(file);
+		      }
+			
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+		
+	}
+	void compwriter(String file) {
+		try {
+		FileWriter myWriter = new FileWriter(file);
+	      myWriter.write(compGoals);
+	      myWriter.close();
+	    } catch (IOException e) {
+	      System.out.println("An error occurred.");
+	      e.printStackTrace();
+	    }
+	}
+	
+	public String getCompGoals(String filename) {
+		String ret = "";
+		try {
+			File file = new File(filename);
+			Scanner scan = new Scanner(file);
+			
+			while(scan.hasNextLine()) {
+				
+				String line = scan.nextLine();
+				String[] tokens = line.split(",");
+				if(tokens != null && tokens.length == 5) {
+					String title = tokens[0];
+					String descritption = tokens[1];
+					String month = tokens[2];
+					String day = tokens[3];
+					String year = tokens[4];
+					ret += title + "," + descritption + "," + month + "," + day + "," + year + "\n";
+					
+				}
+			
+			
+			}
+			
+			
+				
+			
+		}catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	return ret;
 	}
 	
 	/*
@@ -197,5 +282,13 @@ public class User {
 		
 		return output;
 	}
+
+	/**
+	 * @return the compGoals
+	 */
 	
+	
+	
+
+
 }

@@ -1,15 +1,20 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 import application.Main;
 import application.model.Date;
 import application.model.Goal;
 import application.model.User;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,11 +34,10 @@ import javafx.scene.paint.Color;
  */
 
 
-public class AddGoalsController {
+public class AddGoalsController implements EventHandler<ActionEvent>, Initializable {
 
 	
-	@FXML
-	Button backButton, logoutButton, addButton;
+	
 	
 	@FXML
 	Label dateLabel, statusLabel;
@@ -53,7 +57,8 @@ public class AddGoalsController {
 	 * Add button gets text from the three fields and updates goal.txt file with the new goal information
 	 */
 	@FXML
-	void addButton(Event event) {
+	void addButton(ActionEvent event) {
+		statusLabel.setText("");
 		String title = titleField.getText();
 		String preGoal = goalSummary.getText();
 		LocalDate date = datePicker.getValue();
@@ -89,8 +94,11 @@ public class AddGoalsController {
 		
 		user.goalWriter("data/goals.txt");
 		statusLabel.setText("Goal Added");
+		titleField.setText("");
+		goalSummary.setText("");
 		statusLabel.setOpacity(1);
 		statusLabel.setTextFill(Color.GREEN);
+		datePicker.setValue(null);
 		}
 	}
 	
@@ -98,36 +106,33 @@ public class AddGoalsController {
 	 * backButton loads the MainScreen.fxml
 	 */
 	@FXML
-	void backButton(Event event) {
-		try {
+	void backButton(ActionEvent event) {
+		
 
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/MainMenu.fxml"));
-			Parent root = (Parent)fxmlLoader.load();
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
+			try {
+				Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
+				Main.stage.setScene(new Scene(root, 800, 800));
+				Main.stage.show();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
             
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
+       
+	
 	
 	/*
 	 * logout button loads the StartScreen.fxml
 	 */
 	@FXML
-	void logoutButton(Event event) {
+	void logoutButton(ActionEvent event) {
 		try {
-
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/StartScreen.fxml"));
-			Parent root = (Parent)fxmlLoader.load();
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
-            
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+			Parent root = FXMLLoader.load(getClass().getResource("../view/StartScreen.fxml"));
+			Main.stage.setScene(new Scene(root, 800, 800));
+			Main.stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
@@ -144,8 +149,18 @@ public class AddGoalsController {
 	 /*
 	  * Initializes the methods listed upon loading the scene
 	  */
-	 @FXML
-		public void initialize() {
+	 
+		public void initialize(URL location, ResourceBundle resources) {
 			timeThread();
+			
 		}
-}
+
+
+	
+	
+
+	@Override
+	public void handle(ActionEvent event) {
+		// TODO Auto-generated method stub
+		
+	}}

@@ -1,15 +1,20 @@
 package application.controller;
 import java.io.IOException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 import application.Main;
 import application.model.Quotes;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,30 +30,25 @@ import javafx.util.Duration;
  *
  */
 
-public class StartScreenController {
+public class StartScreenController implements EventHandler<ActionEvent>, Initializable {
 	
 	@FXML
 	Label timeLabel, dailyQuote;
 	
-	@FXML
-	Button startButton;
+	
 	
 	/*
 	 * Start button loads the MainMenu.fxml scene
 	 */
-	@FXML
-	public void startButton() {
+	
+	public void startButton(ActionEvent event) {
 		try {
-
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/MainMenu.fxml"));
-			Parent root = (Parent)fxmlLoader.load();
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
-            
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+			Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
+			Main.stage.setScene(new Scene(root, 800, 800));
+			Main.stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
@@ -83,11 +83,19 @@ public class StartScreenController {
 	/*
 	 * Initializes methods upon loading the scene
 	 */
-	@FXML
-	public void initialize() {
+	
+	public void initialize(URL location, ResourceBundle resources) {
 		timeThread();
 		dailyQuote();
 	}
+
+	@Override
+	public void handle(ActionEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 
 	
