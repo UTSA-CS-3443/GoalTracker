@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import application.model.Date;
 import application.model.Goal;
-import application.model.Quotes;
 import application.model.User;
-import javafx.geometry.Pos;
 
 public class testDriver {
 	

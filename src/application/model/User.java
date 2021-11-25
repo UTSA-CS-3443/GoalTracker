@@ -166,7 +166,7 @@ public class User {
 			
 			
 				
-			
+			scan.close();
 		}catch (IOException e) {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();

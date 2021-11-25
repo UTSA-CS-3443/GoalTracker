@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,11 +9,10 @@ import application.Main;
 import application.model.Date;
 import application.model.Goal;
 import application.model.User;
-import application.model.completedGoals;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -95,7 +93,7 @@ public class GoalViewerController implements EventHandler<ActionEvent>, Initiali
 		user.loadGoals("data/goals.txt");
 		ArrayList<Goal> goals = new ArrayList<Goal>();
 		goals = user.getAllGoals();
-		User user2 = new User();
+		//User user2 = new User();
 		if(goalsChoice.getValue() == null) {
 			statusLabel.setOpacity(1);
 			statusLabel.setText("Choose a goal");
@@ -122,6 +120,7 @@ public class GoalViewerController implements EventHandler<ActionEvent>, Initiali
 		setChoiceBox();
 		}
 	}
+	
 	/*
 	 * Sets the items in the choice box by reading the goal titles and applying the Strings to the choicebox
 	 */
